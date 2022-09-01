@@ -2,7 +2,7 @@
 export const Header = () => {
     return (
         <div className={`header`}>
-            <img src={`/assets/images/erhanask.jpg`} />
+            <img alt={`me`} src={`/assets/images/erhanask.jpg`} />
             Spend My Money
         </div>
     )
