@@ -1,63 +1,42 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {buyProduct} from "../../redux/ProductsSlice";
+import {useState} from "react";
 
 export const List = () => {
     const listItems = useSelector(state => state.products.items);
+    const dispatch = useDispatch();
     console.log(listItems);
 
+    const [budget, SetBudget] = useState(1000000000);
+    const calculateBudget = (operation, price) => {
+        console.log(operation + ' ' + price);
+    }
 
     return (
         <>
-            <div className={`moneybar`}> $mymoney</div>
+            <div className={`moneybar`}>${budget}</div>
             <div className={`list`}>
-                <div>
-                    <div className={`itemWrapper`}>
-                        <img alt={`item.name`} src="/assets/images/bike.jpg" className="item-img" />
-                            <div className="item-name">Big Mac</div>
-                            <div className="item-cost">$2</div>
+                {listItems.map(item =>
+                    <div key={item.id}>
+                        <div className={`itemWrapper`}>
+                            <img alt={item.name} src={item.img} className="item-img"/>
+                            <div className="item-name">{item.name}</div>
+                            <div className="item-cost">${item.price}</div>
                             <div className="item-controls">
-                                <button disabled="disabled" className="item-sell">
+                                <button disabled={item.isSellable} className="item-sell">
                                     Sell
                                 </button>
-                                <input type="number" className="item-input" />
-                                <button data-v-0d97e62e="" className="item-buy">
+                                <span className={`item-input`}>0</span>
+                                <button onClick={() => {
+                                    dispatch(buyProduct(item.id))
+                                    calculateBudget('add',item.price)
+                                }} className="item-buy">
                                     Buy
                                 </button>
                             </div>
-                    </div>
-                </div>
-                <div>
-                    <div className={`itemWrapper`}>
-                        <img alt={`item.name`} src="/assets/images/bike.jpg" className="item-img" />
-                        <div className="item-name">Big Mac</div>
-                        <div className="item-cost">$2</div>
-                        <div className="item-controls">
-                            <button disabled="disabled" className="item-sell">
-                                Sell
-                            </button>
-                            <input type="number" className="item-input" />
-                            <button data-v-0d97e62e="" className="item-buy">
-                                Buy
-                            </button>
                         </div>
-                    </div>
-                </div>
-                <div>
-                    <div className={`itemWrapper`}>
-                        <img alt={`item.name`} src="/assets/images/bike.jpg" className="item-img" />
-                        <div className="item-name">Big Mac</div>
-                        <div className="item-cost">$2</div>
-                        <div className="item-controls">
-                            <button disabled="disabled" className="item-sell">
-                                Sell
-                            </button>
-                            <input type="number" className="item-input" />
-                            <button data-v-0d97e62e="" className="item-buy">
-                                Buy
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </div>)}
             </div>
         </>
-)
+    )
 }

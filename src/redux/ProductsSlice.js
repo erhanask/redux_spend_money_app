@@ -66,7 +66,8 @@ const ProductsSlice = createSlice({
                 'name': 'NBA Team',
                 'img': '/assets/images/nba-team.jpg',
                 'price': 250000000,
-                'buyedCount': 0
+                'buyedCount': 0,
+                'isSellable': false
             },
             {
                 'id': 10,
@@ -77,7 +78,14 @@ const ProductsSlice = createSlice({
             },
         ],
     },
-    reducers: {},
+    reducers: {
+        buyProduct: {
+            reducer: (state, action) => {
+                console.log(action.payload);
+            }
+        }
+    },
 })
 
+export const {buyProduct} = ProductsSlice.actions;
 export default ProductsSlice.reducer;
