@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {buyProduct} from "../../redux/ProductsSlice";
+import {buyProduct, sellProduct} from "../../redux/ProductsSlice";
 import {useState} from "react";
 
 export const List = () => {
@@ -7,10 +7,7 @@ export const List = () => {
     const dispatch = useDispatch();
     console.log(listItems);
 
-    const [budget, SetBudget] = useState(1000000000);
-    const calculateBudget = (operation, price) => {
-        console.log(operation + ' ' + price);
-    }
+    const [budget, SetBudget] = useState(1000000000000)
 
     return (
         <>
@@ -23,13 +20,24 @@ export const List = () => {
                             <div className="item-name">{item.name}</div>
                             <div className="item-cost">${item.price}</div>
                             <div className="item-controls">
-                                <button disabled={item.isSellable} className="item-sell">
+                                <button onClick={() => {
+                                    dispatch(sellProduct(item.id))
+                                    SetBudget(budget => {
+                                        return budget = Number(budget) + Number(item.price)
+                                    })
+                                }} disabled={item.notSellable} className="item-sell">
                                     Sell
                                 </button>
-                                <span className={`item-input`}>0</span>
+                                <span className={`item-input`}>{item.buyedCount}</span>
                                 <button onClick={() => {
-                                    dispatch(buyProduct(item.id))
-                                    calculateBudget('add',item.price)
+                                    dispatch(buyProduct([item.id, budget]))
+                                    SetBudget(budget => {
+                                        if (Number(budget) - Number(item.price) > 0) {
+                                            return budget = Number(budget) - Number(item.price)
+                                        } else {
+                                            return budget
+                                        }
+                                    })
                                 }} className="item-buy">
                                     Buy
                                 </button>
