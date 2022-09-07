@@ -179,6 +179,7 @@ button {
 .spree-item-cost, .spree-total-money {
     color: #24c486;
     text-align: right;
+    white-space: nowrap;
 }
 
 .spree-item-cost {

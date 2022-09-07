@@ -9,7 +9,7 @@ const ProductsSlice = createSlice({
                 'id': 1,
                 'name': 'Bike',
                 'img': '/assets/images/bike.jpg',
-                'price': 25,
+                'price': 1250,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -25,7 +25,7 @@ const ProductsSlice = createSlice({
                 'id': 3,
                 'name': 'cruise-ship',
                 'img': '/assets/images/cruise-ship.jpg',
-                'price': 500000000,
+                'price': 5000000000,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -33,7 +33,7 @@ const ProductsSlice = createSlice({
                 'id': 4,
                 'name': 'diamond-ring',
                 'img': '/assets/images/diamond-ring.jpg',
-                'price': 1000000,
+                'price': 10000000,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -41,7 +41,7 @@ const ProductsSlice = createSlice({
                 'id': 5,
                 'name': 'gaming-console',
                 'img': '/assets/images/gaming-console.jpg',
-                'price': 750,
+                'price': 7500,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -49,7 +49,7 @@ const ProductsSlice = createSlice({
                 'id': 6,
                 'name': 'Make A Movie',
                 'img': '/assets/images/make-a-movie.jpg',
-                'price': 3000000,
+                'price': 30000000,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -57,7 +57,7 @@ const ProductsSlice = createSlice({
                 'id': 7,
                 'name': 'Mona Lisa',
                 'img': '/assets/images/mona-lisa.jpg',
-                'price': 450000000,
+                'price': 185000000,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -65,7 +65,7 @@ const ProductsSlice = createSlice({
                 'id': 8,
                 'name': 'Movie Ticket',
                 'img': '/assets/images/movie-ticket.jpg',
-                'price': 1,
+                'price': 5000,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -73,7 +73,7 @@ const ProductsSlice = createSlice({
                 'id': 9,
                 'name': 'NBA Team',
                 'img': '/assets/images/nba-team.jpg',
-                'price': 250000000,
+                'price': 875000000,
                 'buyedCount': 0,
                 'notSellable': true
             },
@@ -81,11 +81,11 @@ const ProductsSlice = createSlice({
                 'id': 10,
                 'name': 'smartphone',
                 'img': '/assets/images/smartphone.jpg',
-                'price': 250,
+                'price': 1750,
                 'buyedCount': 0,
                 'notSellable': true
             },
-        ],
+        ]
     },
     reducers: {
         buyProduct: {
@@ -103,10 +103,8 @@ const ProductsSlice = createSlice({
                 const item = state.items.find(item => item.id === action.payload);
                 if (Number(item.buyedCount) === 1) {
                     item.notSellable = true;
-                    item.buyedCount--;
-                } else {
-                    item.buyedCount--;
                 }
+                item.buyedCount--;
             }
         }
     },

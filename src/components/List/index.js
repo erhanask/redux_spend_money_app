@@ -5,7 +5,6 @@ import {useState} from "react";
 export const List = () => {
     const listItems = useSelector(state => state.products.items);
     const dispatch = useDispatch();
-    console.log(listItems);
 
     const [budget, SetBudget] = useState(1000000000000)
 
